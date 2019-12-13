@@ -11,8 +11,7 @@
                 <div class="card-panel red lighten-4" *ngIf="error">
                     <p>{{error}}</p>  
                 </div>
-                        
-                <label for="email" *ngIf="!email.touched || email.valid ">E-Mail as username</label>
+                <label for="email" *ngIf="!email.touched || email.valid ">E-Mail</label>
                 <label *ngIf="!email.valid && email.touched">Please insert a valid email</label><br>
                 <input 
                     type="email" 
