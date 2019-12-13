@@ -1,0 +1,42 @@
+<div class="container form-position">
+    <div *ngIf="isLoading" class="centered">
+        <app-loading-spinner></app-loading-spinner>
+    </div>
+    <form #signupForm="ngForm" (ngSubmit)="onSignup(signupForm)" *ngIf=!isLoading>
+        <div class="row">
+            <h4 style="text-align: center;">Signup</h4>
+        </div>
+        <div class="row">
+            <div class="col s12 m6 offset-m3">
+                <div class="card-panel red lighten-4" *ngIf="error">
+                    <p>{{error}}</p>  
+                </div>
+                        
+                <label for="email" *ngIf="!email.touched || email.valid ">E-Mail as username</label>
+                <label *ngIf="!email.valid && email.touched">Please insert a valid email</label><br>
+                <input 
+                    type="email" 
+                    id="email" 
+                    ngModel 
+                    name="email" 
+                    required 
+                    email 
+                    #email="ngModel">
+                <br>
+                <label for="password" *ngIf="!password.touched || password.valid ">Password</label>
+                <label *ngIf="!password.valid && password.touched">Please insert a valid password <br>Minimum length is 6</label><br>
+                <input 
+                    type="password" 
+                    id="password" 
+                    ngModel 
+                    name="password" 
+                    required 
+                    minlength="6" 
+                    #password="ngModel">
+                <br>
+                <button class="btn" type="submit" [disabled]="!signupForm.valid">Signup</button>
+            </div>
+        </div>
+        <br>
+    </form>
+</div>
