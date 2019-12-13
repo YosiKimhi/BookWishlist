@@ -34,6 +34,5 @@ export class SignupComponent implements OnInit {
       this.isLoading= false;
     })
 
-    form.reset();
   }
 }

@@ -32,6 +32,7 @@ export class BookDetailsComponent implements OnInit {
     if(!this.data.isWishlist){
       this.inWishlist = this.wishlistService.containInWishList(this.data.book);
     }
+    console.log(this.data.book);
   }
   
   onAddToWishList(){

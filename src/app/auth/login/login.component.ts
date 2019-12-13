@@ -33,19 +33,21 @@ export class LoginComponent implements OnInit {
       resData=>{
         this.isLoading= false;
         this.loadWishlist();
+        this.router.navigate(['/search']);
+        
       },
       errorMessage=>{
         this.error = errorMessage;
         this.isLoading= false;
       })
-      form.reset();
+    
   }
   private loadWishlist(){
     this.wishlistHttpService
     .fetchWishlist()
     .subscribe(wishlist=>{
       this.wishlistService.setWishlist(wishlist);
-      this.router.navigate(['/search']);
+    
     })
   }
 
