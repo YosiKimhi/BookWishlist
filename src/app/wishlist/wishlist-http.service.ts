@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { WishlistService } from './wishlist.service';
 import { AuthService } from '../auth/auth.service';
 import { take, exhaustMap, map } from 'rxjs/operators';
 import { Book } from '../shared/book.model';
@@ -10,7 +9,6 @@ export class WishlishHttpService {
     
     constructor(
         private http:HttpClient,
-        private wishlistService:WishlistService,
         private authService:AuthService){}
 
     storeWishlistBook(book:Book){
@@ -28,7 +26,6 @@ export class WishlishHttpService {
                 params:new HttpParams().set('auth',user.token)
             })
         }))
-        
     }
     fetchWishlist(){
         return this.authService.user.pipe(take(1),exhaustMap(user=>{

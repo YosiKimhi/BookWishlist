@@ -1,0 +1,17 @@
+.paginations{
+    margin-top: 2rem;
+    text-align: center;
+  }
+.paginations a {
+    text-decoration: none;
+    color: #591da8;
+    padding: 0.5rem;
+    border: 1px solid #591da8;
+    margin: 0 0.2rem ;
+}
+.paginations a:hover,
+.paginations a:active,
+.paginations a.active{
+    background:#591da8 ;
+    color:white
+}
