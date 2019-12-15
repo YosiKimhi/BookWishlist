@@ -1,9 +1,34 @@
 .image{
     position: relative;
-    height: 26vh;
-    padding: 0px;
-    right: 1vh;
+    height: 284px;
+    width: 227px;
+    right: 2vh;
+
+  
     /* border-style: solid;
     border-width: 5px;
     margin: -17px; */
+}
+.btn{
+    margin-top: -25px;
+    top: 22px;
+    left: 10px;
+    position: relative;
+}
+
+.btn-potision{
+   position: relative;
+   top: 5px;
+}
+@media (max-width:600px) {
+    .image{
+        right: 0vh;
+    }
+        /* .left-potision{
+            left: 0 vh;
+        } */
+    .center{
+        margin-left: auto;
+        margin-right: auto;
+    }
 }

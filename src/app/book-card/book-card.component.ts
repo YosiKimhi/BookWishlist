@@ -26,7 +26,7 @@ export class BookCardComponent implements OnInit {
   onClickCard(){
     const scrollStrategy = this.overlay.scrollStrategies.reposition();
     this.dialog.open(BookDetailsComponent, {
-      width: '1200px',
+      width: '1300px',
       data: {book: this.book, index: this.index,isWishlist:this.isWishlist},
       scrollStrategy 
     });

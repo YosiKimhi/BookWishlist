@@ -41,8 +41,9 @@ export class BooksHttpService{
             }),
             //editing response data
             map(responseData=>{
+                console.log(responseData);
                 const booksArray:Book[]=[];
-                for(var i=0;i<responseData['items'].length;i++){
+                for(let i=0;i<responseData['items'].length;i++){
                     if(responseData['items'][i]['volumeInfo']['imageLinks']){
                         booksArray.push(new Book(
                             responseData['items'][i]['id'],
@@ -52,6 +53,7 @@ export class BooksHttpService{
                             responseData['items'][i]['volumeInfo']['categories'],
                             responseData['items'][i]['volumeInfo']['publisher'],
                             responseData['items'][i]['volumeInfo']['imageLinks']['thumbnail'],
+                            responseData['items'][i]['volumeInfo']['previewLink'],
                             responseData['items'][i]['volumeInfo']['language'],
                             responseData['items'][i]['volumeInfo']['ratingsCount']
                             ))
@@ -64,6 +66,7 @@ export class BooksHttpService{
                             responseData['items'][i]['volumeInfo']['categories'],
                             responseData['items'][i]['volumeInfo']['publisher'],
                             'https://books.google.co.il/googlebooks/images/no_cover_thumb.gif',
+                            responseData['items'][i]['volumeInfo']['previewLink'],
                             responseData['items'][i]['volumeInfo']['language'],
                             responseData['items'][i]['volumeInfo']['ratingsCount']
                             ))

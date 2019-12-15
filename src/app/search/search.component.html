@@ -1,7 +1,7 @@
 <div class="container">
     <div class="centered">
         <h5>Search</h5>
-        <input type="text" #booksSearch>
+        <input type="text" #booksSearch placeholder="Search for Books">
         <div class="card-panel red lighten-4" *ngIf="error">
                 <p>{{error}}</p>  
         </div>
@@ -35,7 +35,26 @@
             <app-book-card class="center-align" [book]="book" [index]="i" [isWishlist]="false"></app-book-card>
             </div>
         </div>
-
+        <div *ngIf="books">
+            <section class="paginations">
+                <a *ngIf="pageData.currentPage !== 1 && pageData.previousPage !== 1"
+                [routerLink] ="['/search']" 
+                [queryParams]="{page:1}" >1
+                </a>
+                <a *ngIf="pageData.hasPreviousPage"
+                [routerLink] ="['/search']" 
+                [queryParams]="{page:pageData.previousPage}">{{pageData.previousPage}}
+                </a>
+                <a 
+                [routerLink] ="['/search']" 
+                [queryParams]="{page:pageData.currentPage}" class="active">{{pageData.currentPage}}
+                </a>
+                <a *ngIf="pageData.hasNextPage"
+                [routerLink] ="['/search']" 
+                [queryParams]="{page:pageData.nextPage}">{{pageData.nextPage}}
+                </a>
+            </section>
+        </div>
     </div>
     
 </div>

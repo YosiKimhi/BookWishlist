@@ -1,6 +1,6 @@
 <mat-dialog-content>
-  <div class="row">
-    <div class="col m3 xl3">
+  <div class="row ">
+    <div class="col s12 m6 xl3  ">
       <div class="row centered">
         <img src="{{ data.book.imageLink }}" class="image" alt="image" />
       </div>
@@ -16,9 +16,22 @@
             Rating : {{ data.book.ratingCount }} Stars
           </li>
         </ul>
+   
+        <div class="btn-position">
+          <div class="row">
+            <a *ngIf="data.book.previewLink" class="btn blue" href="{{data.book.previewLink}}" target="_blank">Preview</a>
+          </div>
+          <div class="row">
+            <button class="btn blue" (click)="onAddToWishList()" *ngIf='!data.isWishlist && !inWishlist'>Add to my wishlist</button>
+          </div>
+          <div class="row">
+            <button class="btn red" (click)="onRemoveFromWishList()" *ngIf="data.isWishlist">Remove</button>
+          </div>
+        </div>
+        
       </div>
     </div>
-      <div class="col m9 xl9">
+      <div class="col s12 m6 xl9 ">
         <div class="row">
           <h5>{{ data.book.title }}</h5>
           <h6 *ngIf="data.book.authors">by {{ data.book.authors }}</h6>
@@ -27,13 +40,9 @@
         <div class="row" *ngIf="data.book.description">
           <label>Description</label><br />
           <span>{{ data.book.description }}</span>
-          <hr />
+        
         </div>
-        <div class="row">
-          <button class="btn blue" (click)="onAddToWishList()" *ngIf='!data.isWishlist && !inWishlist'>Add to my wishlist</button>
-          <button class="btn red" (click)="onRemoveFromWishList()" *ngIf="data.isWishlist">Remove</button>
-          
-        </div>
+      
       </div>
   </div>
 </mat-dialog-content>  

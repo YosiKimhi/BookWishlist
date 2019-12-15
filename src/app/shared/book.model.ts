@@ -7,6 +7,7 @@ export class Book {
         public categories:string[],
         public publisher:string,
         public imageLink:string,
+        public previewLink:string,
         public language:string,
         public ratingCount:number
         ){
@@ -17,6 +18,7 @@ export class Book {
         this.publisher=publisher;
         this.categories=categories;
         this.imageLink=imageLink;
+        this.previewLink=previewLink;
         this.language=language;
         this.ratingCount=ratingCount;
     }
