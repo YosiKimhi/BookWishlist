@@ -3,7 +3,6 @@ import { Book ,} from '../shared/book.model';
 import { MatDialogRef,MAT_DIALOG_DATA} from '@angular/material';
 import { WishlistService } from '../wishlist/wishlist.service';
 import { WishlishHttpService } from '../wishlist/wishlist-http.service';
-import { Router } from '@angular/router';
 
 export interface DialogData {
   book: Book;
@@ -24,7 +23,6 @@ export class BookDetailsComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private wishlistService:WishlistService,
     private wishlistHttpService:WishlishHttpService,
-    private router:Router
     ) {}
 
 
@@ -32,7 +30,6 @@ export class BookDetailsComponent implements OnInit {
     if(!this.data.isWishlist){
       this.inWishlist = this.wishlistService.containInWishList(this.data.book);
     }
-    console.log(this.data.book);
   }
   
   onAddToWishList(){
@@ -40,7 +37,6 @@ export class BookDetailsComponent implements OnInit {
     .subscribe(response=>{
       if(response){
         this.wishlistService.addToWishlist(this.data.book);
-        // console.log(this.wishlistService.getWishlist());
         this.dialogRef.close();
       }
     })
@@ -51,7 +47,6 @@ export class BookDetailsComponent implements OnInit {
     .subscribe(response=>{
        this.wishlistService.removeBook(this.data.index);
        this.dialogRef.close();
-      //  this.router.navigate(['']);
     }
     ,error=>console.log(error));
   }

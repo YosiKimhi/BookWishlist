@@ -20,12 +20,13 @@
         <div class="btn-position">
           <div class="row">
             <a *ngIf="data.book.previewLink" class="btn blue" href="{{data.book.previewLink}}" target="_blank">Preview</a>
+            <button class="btn red" id="remove" (click)="onRemoveFromWishList()" *ngIf="data.isWishlist">Remove</button>
           </div>
           <div class="row">
             <button class="btn blue" (click)="onAddToWishList()" *ngIf='!data.isWishlist && !inWishlist'>Add to my wishlist</button>
           </div>
           <div class="row">
-            <button class="btn red" (click)="onRemoveFromWishList()" *ngIf="data.isWishlist">Remove</button>
+           
           </div>
         </div>
         

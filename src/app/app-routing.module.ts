@@ -7,9 +7,6 @@ import { AuthGuard } from './auth/auth.guard';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 
-
-
-
 const routes: Routes = [
     {path: '', redirectTo: '/search',pathMatch:'full'},
     {path:'login',component:LoginComponent},

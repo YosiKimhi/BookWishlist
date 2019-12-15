@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { BooksHttpService } from '../shared/books-http.service';
 import { Book } from '../shared/book.model';
-import {debounceTime,map,distinctUntilChanged,filter} from "rxjs/operators";
+import {debounceTime,map,distinctUntilChanged} from "rxjs/operators";
 import { fromEvent } from 'rxjs';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { PageData } from '../shared/page-data.model';
@@ -23,15 +23,13 @@ export class SearchComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    var InputText:string=null;
-    var page = +this.route.snapshot.queryParams['page'] || 1;
-    console.log(page);
+    var InputText:string=null; 
     fromEvent(this.booksSearch.nativeElement, 'keyup')
     .pipe(
       map((event: any) => {
         return event.target.value;
       }),
-      debounceTime(600),
+      debounceTime(400),
       distinctUntilChanged())
       .subscribe((text: string) => {
         this.isloading=true;
@@ -43,12 +41,13 @@ export class SearchComponent implements OnInit {
         }
         InputText=text;
         this.router.navigate(['/search'])
-        this.booksHttp.fetchBooks(text,page)
+        this.booksHttp.clearPageData()
+        this.pageData=this.booksHttp.pageData;
+        this.booksHttp.fetchBooks(text,1)
         .subscribe(books=>{
           this.books=books;
           this.isloading=false;
           this.pageData=this.booksHttp.pageData;
-          console.log(this.pageData)
           },err=>{
           this.books=null;
           this.error=err;
@@ -66,7 +65,6 @@ export class SearchComponent implements OnInit {
             this.isloading=false;
             this.pageData=this.booksHttp.pageData;
             this.error=null;
-            console.log(this.pageData)
             },err=>{
             this.books=null;
             this.error=err;

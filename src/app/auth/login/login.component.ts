@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { WishlistService } from 'src/app/wishlist/wishlist.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   isLoading=false;
   error:string =null;
   constructor(
@@ -18,9 +18,6 @@ export class LoginComponent implements OnInit {
     private wishlistHttpService:WishlishHttpService,
     private wishlistService:WishlistService,
     private router:Router) { }
-
-  ngOnInit() {
-  }
 
   onLogin(form:NgForm){
     if(!form.valid){
@@ -34,21 +31,18 @@ export class LoginComponent implements OnInit {
         this.isLoading= false;
         this.loadWishlist();
         this.router.navigate(['/search']);
-        
       },
       errorMessage=>{
         this.error = errorMessage;
         this.isLoading= false;
-      })
-    
+      });
   }
   private loadWishlist(){
     this.wishlistHttpService
     .fetchWishlist()
     .subscribe(wishlist=>{
       this.wishlistService.setWishlist(wishlist);
-    
-    })
+    });
   }
 
 }

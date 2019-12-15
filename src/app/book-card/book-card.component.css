@@ -1,9 +1,10 @@
-.image{
+.image {
     height: 266px;
 
 }
-.card{
-    padding:10px;
+
+.card {
+    padding: 10px;
     margin-left: auto;
     margin-right: auto;
     height: 363px;
@@ -12,10 +13,8 @@
 
 
 p {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
 }
-
-  

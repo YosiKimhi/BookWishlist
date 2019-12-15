@@ -15,7 +15,6 @@ export class WishlistComponent implements OnInit {
     private wishlistService:WishlistService) { }
 
   ngOnInit() {
-    console.log(this.wishlistService.getWishlist().length===0);
     if(this.wishlistService.getWishlist().length===0)
     {
       this.wishlistHttpService.fetchWishlist()

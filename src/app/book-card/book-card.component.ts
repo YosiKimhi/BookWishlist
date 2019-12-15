@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Book } from '../shared/book.model';
 import { MatDialog } from '@angular/material';
 import { BookDetailsComponent } from '../book-details/book-details.component';
@@ -10,7 +10,7 @@ import { Overlay } from '@angular/cdk/overlay';
   templateUrl: './book-card.component.html',
   styleUrls: ['./book-card.component.css']
 })
-export class BookCardComponent implements OnInit {
+export class BookCardComponent  {
   @Input() book:Book;
   @Input() index:number;
   @Input() isWishlist:boolean;
@@ -19,10 +19,6 @@ export class BookCardComponent implements OnInit {
     public dialog:MatDialog,
     private overlay: Overlay) { }
 
-  ngOnInit() {
-
-  }
-  
   onClickCard(){
     const scrollStrategy = this.overlay.scrollStrategies.reposition();
     this.dialog.open(BookDetailsComponent, {

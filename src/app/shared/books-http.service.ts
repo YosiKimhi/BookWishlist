@@ -16,7 +16,6 @@ export class BooksHttpService{
         var limit=20;
         var startIndex=(page-1)*limit;
         var startIndexStr=startIndex.toString();
-        
         //Set Params!
         let searchParams = new HttpParams();
         searchParams= searchParams.append('q',booksSearch);
@@ -41,7 +40,6 @@ export class BooksHttpService{
             }),
             //editing response data
             map(responseData=>{
-                console.log(responseData);
                 const booksArray:Book[]=[];
                 for(let i=0;i<responseData['items'].length;i++){
                     if(responseData['items'][i]['volumeInfo']['imageLinks']){
@@ -75,11 +73,14 @@ export class BooksHttpService{
                 }
                 return booksArray;
             }),catchError(errorRes=>{
-                // let errorMessage="No books match found!";
+                let errorMessage="No books match found!";
                 if(errorRes){
-                    return throwError(errorRes);
+                    return throwError(errorMessage);
                 }
             })
         );
+    }
+    clearPageData(){
+        this.pageData = null
     }
 }
