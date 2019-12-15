@@ -9,10 +9,16 @@
     border: 1px solid #591da8;
     margin: 0 0.2rem ;
 }
-.paginations a:hover,
+
 .paginations a:active,
 .paginations a.active{
     background:#591da8 ;
     color:white
 }
 
+@media(hover: hover) and (pointer: fine) {
+    .paginations a:hover {
+        background:#591da8 ;
+        color:white
+    }
+}
