@@ -29,7 +29,7 @@ export class SearchComponent implements OnInit {
       map((event: any) => {
         return event.target.value;
       }),
-      debounceTime(400),
+      debounceTime(450),
       distinctUntilChanged())
       .subscribe((text: string) => {
         this.isloading=true;
