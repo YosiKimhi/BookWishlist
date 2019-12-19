@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable, Type } from '@angular/core';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
 import { Book } from './book.model';
 import { catchError } from 'rxjs/operators';
@@ -23,8 +23,12 @@ export class BooksHttpService{
         searchParams= searchParams.append('startIndex',startIndexStr);
         searchParams= searchParams.append('projection','full');
         searchParams= searchParams.append('key',this.APIkey);
+        // let headers = new HttpHeaders();
+        
+        
         return this.http.get('https://www.googleapis.com/books/v1/volumes',{
             params: searchParams
+            // headers:headers
         })
         .pipe(
             tap(responseData=>{
@@ -50,8 +54,8 @@ export class BooksHttpService{
                             responseData['items'][i]['volumeInfo']['description'],
                             responseData['items'][i]['volumeInfo']['categories'],
                             responseData['items'][i]['volumeInfo']['publisher'],
-                            responseData['items'][i]['volumeInfo']['imageLinks']['thumbnail'],
-                            responseData['items'][i]['volumeInfo']['previewLink'],
+                            responseData['items'][i]['volumeInfo']['imageLinks']['thumbnail'].replace('http','https'),
+                            responseData['items'][i]['volumeInfo']['previewLink'].replace('http','https'),
                             responseData['items'][i]['volumeInfo']['language'],
                             responseData['items'][i]['volumeInfo']['ratingsCount']
                             ))
@@ -64,7 +68,7 @@ export class BooksHttpService{
                             responseData['items'][i]['volumeInfo']['categories'],
                             responseData['items'][i]['volumeInfo']['publisher'],
                             'https://books.google.co.il/googlebooks/images/no_cover_thumb.gif',
-                            responseData['items'][i]['volumeInfo']['previewLink'],
+                            responseData['items'][i]['volumeInfo']['previewLink'].replace('http','https'),
                             responseData['items'][i]['volumeInfo']['language'],
                             responseData['items'][i]['volumeInfo']['ratingsCount']
                             ))
